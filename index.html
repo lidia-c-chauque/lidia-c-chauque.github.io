@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Vendas com VSL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff0000;
+            font-size: 28px;
+        }
+        video {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        #cta-button {
+            display: none; /* Botão invisível no início */
+            background: #ff0000;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto;
+        }
+        #countdown {
+            font-size: 20px;
+            color: #ff0000;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔴 ATENÇÃO: OFERTA POR TEMPO LIMITADO!</h1>
+    
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/YJnw1GnibDM?si=cXFM2yaOvwyTDQHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    <!-- Contador regressivo -->
+    <div id="countdown"></div>
+    
+    <!-- Botão de compra (aparece após 5min e 10s) -->
+    <button id="cta-button">QUERO GARANTIR AGORA!</button>
+
+    <script>
+        // Contador regressivo (5min e 10s = 310 segundos)
+        var tempoRestante = 310;
+        var countdown = setInterval(function() {
+            var minutos = Math.floor(tempoRestante / 60);
+            var segundos = tempoRestante % 60;
+            document.getElementById("countdown").innerHTML = 
+                "⏳ TEMPO RESTANTE: " + minutos + "min " + segundos + "s";
+            if (tempoRestante <= 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "ÚLTIMOS SEGUNDOS!";
+            }
+            tempoRestante--;
+        }, 1000);
+
+        // Botão aparece após 5min e 10s (310.000 milissegundos)
+        setTimeout(function() {
+            document.getElementById("cta-button").style.display = "block";
+        }, 310000);
+        
+        // Redireciona para o checkout ao clicar no botão
+        document.getElementById("cta-button").addEventListener("click", function() {
+            window.location.href = https://pay.hotmart.com/X101048670R; // Substitua pelo seu link
+        });
+    </script>
+</body>
+</html>
