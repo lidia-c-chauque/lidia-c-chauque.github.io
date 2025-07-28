@@ -30,10 +30,14 @@
         }
         #aviso {
             background: #fff;
-            padding: 10px;
+            padding: 15px;
             border: 2px dashed #ff0000;
             margin: 20px auto;
             max-width: 600px;
+            font-size: 18px;
+        }
+        #aviso strong {
+            color: #ff0000; /* Vermelho */
             font-weight: bold;
         }
         #contador {
@@ -60,21 +64,21 @@
     </style>
 </head>
 <body>
-    <!-- TÍTULO BEGE + DESTAQUE VERMELHO -->
+    <!-- TÍTULO PRINCIPAL (BEGE + DESTAQUE VERMELHO) -->
     <div class="header">
         <h1>🚨 <span class="destaque">ATENÇÃO:</span> VOCÊ TEM APENAS <span class="destaque">1 CHANCE</span> DE GARANTIR ISSO!</h1>
     </div>
 
-    <!-- CHAMADA DE ATENÇÃO -->
+    <!-- SUBTÍTULO PERSONALIZADO (COM TEXTO VERMELHO) -->
     <div id="aviso">
-        🔥 ASSISTA O VÍDEO ATÉ O FINAL! O BOTÃO DE COMPRA APARECERÁ AUTOMATICAMENTE.
+        <p>Tranquilidade para você e seu bebê começa por aqui. <strong>ASSISTA ATÉ O FINAL!</strong></p>
     </div>
 
     <!-- PLAYER DO VÍDEO (BLOQUEADO) -->
     <div id="player-container">
         <iframe
             id="meuVsl"
-            src="https://player.vimeo.com/video/SEU_ID?autoplay=1&muted=1&controls=0&title=0&byline=0&portrait=0"
+            src="https://player.vimeo.com/video/1104904602?autoplay=1&muted=1&controls=0&title=0&byline=0&portrait=0"
             width="800"
             height="450"
             frameborder="0"
@@ -85,8 +89,9 @@
 
     <!-- CONTADOR + BOTÃO -->
     <div id="contador">⏳ TEMPO RESTANTE: 5:00</div>
-    <button id="botao-compra">👉 QUERO GARANTIR AGORA!</button>
-
+   <button id="botao-compra" onclick="window.location.href='https://https://pay.hotmart.com/X101048670R?checkoutMode=10'">
+    👉 QUERO GARANTIR AGORA!
+</button>
     <script>
         // ===== BLOQUEIO TOTAL DE INTERAÇÕES ===== //
         document.getElementById('meuVsl').style.pointerEvents = 'none';
