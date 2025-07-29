@@ -2,7 +2,14 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>OFERTA ÚNICA - NÃO REPETE!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OFERTA ÚNICA - TRANQUILIDADE PARA SEU BEBÊ</title>
+    
+    <!-- Favicon Bebê -->
+    <link rel="icon" href="https://www.favicon.cc/?action=icon&file_id=950292" type="image/png">
+    <link rel="apple-touch-icon" href="https://www.favicon.cc/?action=icon&file_id=950292">
+    <link rel="shortcut icon" href="https://www.favicon.cc/download.php?id=950292&format=ico" type="image/x-icon">
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,29 +68,17 @@
         #botao-compra:hover {
             background: #cc0000;
         }
-        /* NOVO: Controle de som */
-        #controle-som {
-            margin: 15px auto;
-        }
-        #btn-som {
-            background: #333;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
     <!-- TÍTULO PRINCIPAL -->
     <div class="header">
-        <h1>🚨 <span class="destaque">ATENÇÃO:</span> VOCÊ TEM APENAS <span class="destaque">1 CHANCE</span> DE GARANTIR ISSO!</h1>
+        <h1>👶 <span class="destaque">TRANQUILIDADE PARA SEU BEBÊ:</span> <span class="destaque">OFERTA ÚNICA!</span></h1>
     </div>
 
     <!-- SUBTÍTULO -->
     <div id="aviso">
-        <p>Tranquilidade para você e seu bebê começa por aqui. <strong>ASSISTA ATÉ O FINAL!</strong></p>
+        <p>Seu bebê merece o melhor descanso. <strong>ASSISTA ATÉ O FINAL!</strong></p>
     </div>
 
     <!-- PLAYER DO VÍDEO -->
@@ -99,39 +94,18 @@
         </iframe>
     </div>
 
-    <!-- NOVO: CONTROLE DE SOM -->
-    <div id="controle-som">
-        <button id="btn-som">🔈 ATIVAR SOM</button>
-    </div>
-
     <!-- CONTADOR + BOTÃO -->
     <div id="contador">⏳ TEMPO RESTANTE: 5:00</div>
-    <button id="botao-compra">👉 QUERO GARANTIR AGORA!</button>
+    <button id="botao-compra" onclick="window.location.href='https://pay.hotmart.com/X101048670R?checkoutMode=10'">
+        👉 QUERO GARANTIR PARA MEU BEBÊ!
+    </button>
 
-    <!-- SCRIPTS -->
-    <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
         // ===== BLOQUEIO DE INTERAÇÕES ===== //
         document.getElementById('meuVsl').style.pointerEvents = 'none';
-        let player = new Vimeo.Player(document.getElementById('meuVsl'));
         
         window.addEventListener('keydown', function(e) {
             if ([32, 37, 39, 122].includes(e.keyCode)) e.preventDefault();
-        });
-
-        // ===== CONTROLE DE SOM ===== //
-        let somAtivado = false;
-        document.getElementById('btn-som').addEventListener('click', function() {
-            somAtivado = !somAtivado;
-            if (somAtivado) {
-                player.setVolume(1);
-                this.textContent = '🔊 SOM ATIVADO';
-                this.style.background = '#4CAF50';
-            } else {
-                player.setVolume(0);
-                this.textContent = '🔈 ATIVAR SOM';
-                this.style.background = '#333';
-            }
         });
 
         // ===== CONTADOR REGRESSIVO ===== //
@@ -147,14 +121,7 @@
 
         // ===== BOTÃO DE COMPRA ===== //
         setTimeout(() => {
-            const botao = document.getElementById('botao-compra');
-            botao.style.display = 'block';
-            botao.addEventListener('click', () => {
-                window.location.href = 'https://pay.hotmart.com/X101048670R?checkoutMode=10';
-                
-                // Adicione aqui pixels de rastreamento se necessário
-                // if (typeof fbq !== 'undefined') fbq('track', 'Purchase');
-            });
+            document.getElementById('botao-compra').style.display = 'block';
         }, 300000);
     </script>
 </body>
