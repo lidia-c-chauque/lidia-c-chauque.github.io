@@ -52,8 +52,6 @@
             position: relative;
             width: 100%;
             margin: 0 auto;
-            flex-grow: 1;
-            min-height: 0;
         }
         
         .video-wrapper {
@@ -75,9 +73,12 @@
             border: none;
         }
         
-        #controles {
-            margin: 8px auto; /* Ajustado para subir */
-            width: 100%;
+        .controles-mobile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 8px;
+            gap: 8px;
         }
         
         #btnSom {
@@ -96,7 +97,6 @@
             font-size: clamp(16px, 4vw, 18px);
             color: #e63946;
             font-weight: bold;
-            margin: 8px 0; /* Ajustado para subir */
         }
         
         #botaoCompra {
@@ -107,11 +107,11 @@
             font-size: clamp(16px, 4vw, 18px);
             border: none;
             border-radius: 30px;
-            margin: 8px auto; /* Ajustado para subir */
             cursor: pointer;
             width: 100%;
             max-width: 300px;
             box-shadow: 0 4px 8px rgba(230, 57, 70, 0.3);
+            margin-top: 8px;
         }
         
         .aviso {
@@ -136,23 +136,9 @@
                 max-height: 450px;
             }
             
-            #contador, #botaoCompra {
-                margin: 15px auto;
-            }
-        }
-
-        /* ============ AJUSTES MOBILE ============ */
-        @media (max-width: 768px) {
-            #controles {
-                margin: 5px auto; /* Subiu mais */
-            }
-            
-            #contador {
-                margin: 5px 0; /* Subiu mais */
-            }
-            
-            #botaoCompra {
-                margin: 5px auto; /* Subiu mais */
+            .controles-mobile {
+                margin-top: 15px;
+                gap: 12px;
             }
         }
     </style>
@@ -181,13 +167,12 @@
             </div>
         </div>
         
-        <div id="controles">
+        <!-- ÁREA DOS CONTROLES (MOBILE) -->
+        <div class="controles-mobile">
             <button id="btnSom">🔈 ATIVAR SOM</button>
+            <div id="contador">⏳ TEMPO RESTANTE: 5:00</div>
+            <button id="botaoCompra">👉 QUERO GARANTIR AGORA!</button>
         </div>
-        
-        <div id="contador">⏳ TEMPO RESTANTE: 5:00</div>
-        
-        <button id="botaoCompra">👉 QUERO GARANTIR AGORA!</button>
     </div>
 
     <script>
