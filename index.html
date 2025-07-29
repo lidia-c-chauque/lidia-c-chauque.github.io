@@ -4,16 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>OFERTA EXCLUSIVA - Tranquilidade para Seu Bebê</title>
-    <!-- Favicon de bebê dormindo -->
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2102/2102847.png" type="image/png">
     
-    <!-- Pré-carregamentos críticos -->
-    <link rel="preconnect" href="https://player.vimeo.com">
-    <link rel="dns-prefetch" href="https://player.vimeo.com">
-    <link rel="preload" as="script" href="https://player.vimeo.com/api/player.js">
-    
     <style>
-        /* Reset Performance */
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +14,6 @@
             -webkit-tap-highlight-color: transparent;
         }
         
-        /* Layout Fixo Sem Rolagem */
         html, body {
             height: 100%;
             overflow: hidden;
@@ -29,7 +21,6 @@
             font-family: 'Arial', sans-serif;
         }
         
-        /* Container Principal */
         .container {
             display: flex;
             flex-direction: column;
@@ -40,7 +31,6 @@
             text-align: center;
         }
         
-        /* Cabeçalho */
         .header {
             background: #d4b483;
             padding: 12px;
@@ -58,13 +48,12 @@
             font-weight: bold;
         }
         
-        /* Player de Vídeo Ultra-Otimizado */
         .video-container {
             position: relative;
             width: 100%;
             margin: 0 auto;
             flex-grow: 1;
-            min-height: 0; /* Fix para Firefox */
+            min-height: 0;
         }
         
         .video-wrapper {
@@ -86,7 +75,6 @@
             border: none;
         }
         
-        /* Controles */
         #controles {
             margin: 12px auto;
             width: 100%;
@@ -104,7 +92,6 @@
             max-width: 200px;
         }
         
-        /* Contador */
         #contador {
             font-size: clamp(16px, 4vw, 18px);
             color: #e63946;
@@ -112,7 +99,6 @@
             margin: 10px 0;
         }
         
-        /* Botão de Compra */
         #botaoCompra {
             display: none;
             background: linear-gradient(to right, #e63946, #c1121f);
@@ -128,7 +114,6 @@
             box-shadow: 0 4px 8px rgba(230, 57, 70, 0.3);
         }
         
-        /* Aviso */
         .aviso {
             background: #fff9ec;
             padding: 10px;
@@ -139,37 +124,45 @@
             border-radius: 0 8px 8px 0;
             width: 95%;
         }
-        
-        /* Otimizações para Mobile */
-        @media (max-width: 768px) {
+
+        /* ============ VERSÃO DESKTOP ============ */
+        @media (min-width: 769px) {
             .container {
-                padding: 8px;
+                max-width: 800px;
+                padding: 20px;
             }
             
-            .header {
-                padding: 10px;
+            .video-wrapper {
+                max-height: 450px;
             }
             
-            #btnSom {
-                padding: 12px;
-                font-size: 15px;
+            #contador, #botaoCompra {
+                margin: 15px auto;
+            }
+        }
+
+        /* ============ AJUSTES MOBILE ============ */
+        @media (max-width: 768px) {
+            #contador {
+                margin: 5px 0 10px; /* Subiu o temporizador */
+            }
+            
+            #botaoCompra {
+                margin: 5px auto 10px; /* Subiu o botão */
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Cabeçalho -->
         <div class="header">
             <h1>👶 <span class="destaque">TRANQUILIDADE PARA SEU BEBÊ:</span> <span class="destaque">OFERTA ÚNICA!</span></h1>
         </div>
         
-        <!-- Aviso -->
         <div class="aviso">
-            <p><strong>Assista até</strong> - o final</p>
+            <p><strong>Assista até o final</strong></p>
         </div>
         
-        <!-- Player de Vídeo -->
         <div class="video-container">
             <div class="video-wrapper">
                 <iframe
@@ -184,23 +177,19 @@
             </div>
         </div>
         
-        <!-- Controles -->
         <div id="controles">
             <button id="btnSom">🔈 ATIVAR SOM</button>
         </div>
         
-        <!-- Contador -->
         <div id="contador">⏳ TEMPO RESTANTE: 5:00</div>
         
-        <!-- Botão de Compra -->
         <button id="botaoCompra">👉 QUERO GARANTIR AGORA!</button>
     </div>
 
-    <!-- Scripts Otimizados -->
     <script>
         // Configurações
         const VIDEO_ID = '1104904602';
-        const TEMPO_BOTAO = 300; // 5 minutos em segundos
+        const TEMPO_BOTAO = 300;
         
         // Elementos
         const video = document.getElementById('meuVideo');
@@ -209,25 +198,19 @@
         // Bloqueia rolagem
         document.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
         
-        // Inicialização Rápida
+        // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
-            // Forçar qualidade 480p e autoplay
             video.src = `https://player.vimeo.com/video/${VIDEO_ID}?autoplay=1&muted=1&controls=0&title=0&byline=0&portrait=0&quality=480p&playsinline=1`;
             
-            // Carrega a API do Vimeo sem bloquear a renderização
             const script = document.createElement('script');
             script.src = 'https://player.vimeo.com/api/player.js';
             script.async = true;
             document.body.appendChild(script);
             
-            // Contador Regressivo
             iniciarContador();
-            
-            // Configura o botão de som
             btnSom.addEventListener('click', ativarSom);
         });
         
-        // Ativação do Som
         function ativarSom() {
             const player = new Vimeo.Player(video);
             player.setVolume(1).then(() => {
@@ -238,7 +221,6 @@
             });
         }
         
-        // Contador Regressivo
         function iniciarContador() {
             let tempo = TEMPO_BOTAO;
             const contador = setInterval(() => {
@@ -255,14 +237,12 @@
             }, 1000);
         }
         
-        // Mostrar Botão de Compra
         function mostrarBotao() {
             const botao = document.getElementById('botaoCompra');
             botao.style.display = 'block';
             document.getElementById('contador').textContent = "⚠️ ÚLTIMA CHANCE!";
             
             botao.addEventListener('click', () => {
-                // Redirecionamento com rastreamento
                 if (typeof fbq !== 'undefined') {
                     fbq('track', 'Purchase', {value: 97.00, currency: 'BRL'});
                 }
