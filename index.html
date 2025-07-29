@@ -76,7 +76,7 @@
         }
         
         #controles {
-            margin: 12px auto;
+            margin: 8px auto; /* Ajustado para subir */
             width: 100%;
         }
         
@@ -96,7 +96,7 @@
             font-size: clamp(16px, 4vw, 18px);
             color: #e63946;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 8px 0; /* Ajustado para subir */
         }
         
         #botaoCompra {
@@ -107,7 +107,7 @@
             font-size: clamp(16px, 4vw, 18px);
             border: none;
             border-radius: 30px;
-            margin: 10px auto;
+            margin: 8px auto; /* Ajustado para subir */
             cursor: pointer;
             width: 100%;
             max-width: 300px;
@@ -143,12 +143,16 @@
 
         /* ============ AJUSTES MOBILE ============ */
         @media (max-width: 768px) {
+            #controles {
+                margin: 5px auto; /* Subiu mais */
+            }
+            
             #contador {
-                margin: 5px 0 10px; /* Subiu o temporizador */
+                margin: 5px 0; /* Subiu mais */
             }
             
             #botaoCompra {
-                margin: 5px auto 10px; /* Subiu o botão */
+                margin: 5px auto; /* Subiu mais */
             }
         }
     </style>
