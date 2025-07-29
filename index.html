@@ -7,19 +7,19 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: #f5f5f0; /* Fundo bege claro */
+            background: #f5f5f0;
             color: #333;
             margin: 0;
             padding: 20px;
         }
         .header {
-            background: #d4b483; /* Bege médio */
+            background: #d4b483;
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 20px;
         }
         .destaque {
-            color: #ff0000; /* Vermelho */
+            color: #ff0000;
             font-size: 24px;
             font-weight: bold;
         }
@@ -37,7 +37,7 @@
             font-size: 18px;
         }
         #aviso strong {
-            color: #ff0000; /* Vermelho */
+            color: #ff0000;
             font-weight: bold;
         }
         #contador {
@@ -61,24 +61,36 @@
         #botao-compra:hover {
             background: #cc0000;
         }
+        /* NOVO: Controle de som */
+        #controle-som {
+            margin: 15px auto;
+        }
+        #btn-som {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <!-- TÍTULO PRINCIPAL (BEGE + DESTAQUE VERMELHO) -->
+    <!-- TÍTULO PRINCIPAL -->
     <div class="header">
         <h1>🚨 <span class="destaque">ATENÇÃO:</span> VOCÊ TEM APENAS <span class="destaque">1 CHANCE</span> DE GARANTIR ISSO!</h1>
     </div>
 
-    <!-- SUBTÍTULO PERSONALIZADO (COM TEXTO VERMELHO) -->
+    <!-- SUBTÍTULO -->
     <div id="aviso">
         <p>Tranquilidade para você e seu bebê começa por aqui. <strong>ASSISTA ATÉ O FINAL!</strong></p>
     </div>
 
-    <!-- PLAYER DO VÍDEO (BLOQUEADO) -->
+    <!-- PLAYER DO VÍDEO -->
     <div id="player-container">
         <iframe
             id="meuVsl"
-            src="https://player.vimeo.com/video/1104904602?autoplay=1&muted=0&controls=0&title=0&byline=0&portrait=0"
+            src="https://player.vimeo.com/video/1104904602?autoplay=1&muted=1&controls=0&title=0&byline=0&portrait=0"
             width="800"
             height="450"
             frameborder="0"
@@ -87,38 +99,63 @@
         </iframe>
     </div>
 
+    <!-- NOVO: CONTROLE DE SOM -->
+    <div id="controle-som">
+        <button id="btn-som">🔈 ATIVAR SOM</button>
+    </div>
+
     <!-- CONTADOR + BOTÃO -->
     <div id="contador">⏳ TEMPO RESTANTE: 5:00</div>
-   <button id="botao-compra" onclick="window.location.href='https://https://pay.hotmart.com/X101048670R?checkoutMode=10'">
-    👉 QUERO GARANTIR AGORA!
-</button>
+    <button id="botao-compra">👉 QUERO GARANTIR AGORA!</button>
+
+    <!-- SCRIPTS -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
-        // ===== BLOQUEIO TOTAL DE INTERAÇÕES ===== //
+        // ===== BLOQUEIO DE INTERAÇÕES ===== //
         document.getElementById('meuVsl').style.pointerEvents = 'none';
+        let player = new Vimeo.Player(document.getElementById('meuVsl'));
         
         window.addEventListener('keydown', function(e) {
-            // Bloqueia: Espaço, setas, F11, etc
-            if ([32, 37, 39, 122].includes(e.keyCode)) {
-                e.preventDefault();
+            if ([32, 37, 39, 122].includes(e.keyCode)) e.preventDefault();
+        });
+
+        // ===== CONTROLE DE SOM ===== //
+        let somAtivado = false;
+        document.getElementById('btn-som').addEventListener('click', function() {
+            somAtivado = !somAtivado;
+            if (somAtivado) {
+                player.setVolume(1);
+                this.textContent = '🔊 SOM ATIVADO';
+                this.style.background = '#4CAF50';
+            } else {
+                player.setVolume(0);
+                this.textContent = '🔈 ATIVAR SOM';
+                this.style.background = '#333';
             }
         });
 
         // ===== CONTADOR REGRESSIVO ===== //
-        var tempo = 300; // 5 minutos em segundos
-        var contador = setInterval(function() {
-            var minutos = Math.floor(tempo / 60);
-            var segundos = tempo % 60;
+        let tempo = 300;
+        const contador = setInterval(() => {
+            const minutos = Math.floor(tempo / 60);
+            const segundos = tempo % 60;
             document.getElementById('contador').innerHTML = 
                 `⏳ TEMPO RESTANTE: ${minutos}:${segundos < 10 ? '0' + segundos : segundos}`;
             if (tempo <= 0) clearInterval(contador);
             tempo--;
         }, 1000);
 
-        // ===== BOTÃO APARECE APÓS 5 MINUTOS ===== //
-        setTimeout(function() {
-            document.getElementById('botao-compra').style.display = 'block';
-            document.getElementById('contador').innerHTML = "⚠️ OFERTA PRESTES A ENCERRAR!";
-        }, 300000); // 300.000 ms = 5 minutos
+        // ===== BOTÃO DE COMPRA ===== //
+        setTimeout(() => {
+            const botao = document.getElementById('botao-compra');
+            botao.style.display = 'block';
+            botao.addEventListener('click', () => {
+                window.location.href = 'https://pay.hotmart.com/X101048670R?checkoutMode=10';
+                
+                // Adicione aqui pixels de rastreamento se necessário
+                // if (typeof fbq !== 'undefined') fbq('track', 'Purchase');
+            });
+        }, 300000);
     </script>
 </body>
 </html>
